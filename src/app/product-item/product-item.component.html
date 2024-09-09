@@ -1,13 +1,13 @@
 <div class="product-container">
-  <a routerLink="/detail/product.id"> <img class="product-image" [src]="product.url" [alt]="product.description"></a>
+  <a [routerLink]="['/detail', product.id]"><img class="product-image" [src]="product.url" [alt]="product.description"></a>
   <p>{{ product.name }}</p>
   <p>{{ product.price }}</p>
-  <select class="select-input">
-    <option value = "1">1</option>
-    <option value = "2">2</option>
-    <option value = "3">3</option>
-    <option value = "4">4</option>
-    <option value = "5">5</option>
+  <select class="select-input" [(ngModel)]="product.count" >
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
   </select>
-  <button>Add to cart</button>
+  <button (click)="buyProduct()">Add to cart</button>
 </div>

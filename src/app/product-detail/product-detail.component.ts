@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/Product';
 import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
@@ -14,12 +17,16 @@ import { ProductService } from '../services/product.service';
 export class ProductDetailComponent implements OnInit {
   product: Product = new Product();
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  constructor(private route: ActivatedRoute, private productService: ProductService, private buyEventService: CartService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = Number(params.get('id') || 0);
-      this.product = this.productService.getProduct(id)[0]
-    })
+    const id = this.route.snapshot.paramMap.get('id') || 99;
+    this.product = this.productService.getProduct(Number(id));
   }
+
+  buyProduct(): void {
+    this.buyEventService.updateCartList(this.product);
+  }
+
 }
+

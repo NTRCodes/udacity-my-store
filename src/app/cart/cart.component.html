@@ -1,1 +1,46 @@
-<p>cart works!</p>
+<div class="cart-container">
+  @if (cartList.length > 0 && cartMode === true) {
+    <div class="cart-item-details">
+      @for(product of cartList; track product.id) {
+        <div class="cart-item">
+          <img [src]="product.url" [alt]="product.description">
+          <div class="cart-item-details">
+            <h2>{{ product.name }}</h2>
+            <h3>${{ product.price }}</h3>
+            <div>
+              <span>Amount: </span>
+              <input type="number" class="number-input" [(ngModel)]="product.count" (change)="updateTotal()">
+            </div>
+          </div>
+        </div>
+      }
+      <p><strong>Cart Total: </strong>${{ total }}</p>
+    </div>
+    <form #form="ngForm" ngNativeValidate (ngSubmit)="submitForm()" class="cart-panel cart-item-details form-margin">
+      <label>Full Name</label>
+      <input type="<text" name="fullName" minlength="3" placeholder="(minimum 3 characters)" [(ngModel)]="name" required/>
+
+      <label>Address</label>
+      <input type="<text" name="address" minlength="6" placeholder="(minimum 6 characters)" ngModel required/>
+
+      <label>Credit Card</label>
+      <input type="number" name="creditCard" minlength="16" placeholder="(16-digit number)" ngModel required/>
+
+      <p>All of your payment details are belong to me.</p>
+      <button type="submit" [disabled]="form.invalid">Submit</button>
+    </form>
+  }
+  @if (cartMode === true && cartList.length < 1) {
+
+    <h2 class="empty-cart-message">Cart is Empty!</h2>
+  }
+
+  @if (cartMode == false) {
+    <div>
+      <h2>Wooo!</h2>
+      <p>Thank you, <strong>{{ name }}</strong>.</p>
+      <p>Your <strong>${{ total }}</strong> order is confirmed!</p>
+      <p>Please allow 3-17 business day(s) for shipping.</p>
+    </div>
+     }
+</div>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import productData from '../../../data.json';
+import { Product } from '../models/Product';
 
 
 @Injectable({
@@ -14,6 +15,6 @@ export class ProductService {
   }
 
   getProduct(id: number) {
-    return productData.filter(product => product.id !== id)
+    return productData.find((product: Product) => product.id === id) || productData[1];
   }
 }

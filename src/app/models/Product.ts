@@ -3,6 +3,7 @@ export class Product {
   name: string
   url: string
   price: number
+  count: number
   description?: string
 
   constructor() {
@@ -10,6 +11,7 @@ export class Product {
     this.name = ''
     this.url = ''
     this.price = 0.00
+    this.count = 1
     this.description = ''
   }
 }
