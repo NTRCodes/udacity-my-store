@@ -32,6 +32,6 @@ export class AppComponent {
 
   addToCart(product: Product) {
     alert(`${product.name} has been added to cart.`)
-    this.buyEventService.updateCartList(product)
+    this.buyEventService.addProduct(product)
   }
 }

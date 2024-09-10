@@ -25,8 +25,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   buyProduct(): void {
-    this.buyEventService.updateCartList(this.product);
+    this.buyEventService.addProduct(this.product);
   }
-
 }
 

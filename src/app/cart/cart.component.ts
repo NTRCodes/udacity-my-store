@@ -37,6 +37,7 @@ export class CartComponent {
   updateTotal() {
     const total = this.cartList.reduce((sum, product) => sum + (product.count || 0) * product.price, 0)
     this.total = parseFloat(total.toFixed(2));
+    this.cartList.map(product => this.buyEventService.checkCount(product));
   }
 
 }
