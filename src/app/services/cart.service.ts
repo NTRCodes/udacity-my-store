@@ -40,6 +40,7 @@ export class CartService {
     if (product.count <= 0) {
       const newCart = this.cartListSubject.value.filter(cartProduct => product.id !== cartProduct.id);
       this.cartListSubject.next(newCart);
+      alert(`${product.name} has been removed from the cart!`);
     }
   }
 }
