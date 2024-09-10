@@ -4,8 +4,6 @@ import { ProductItemComponent } from '../product-item/product-item.component';
 import { ProductService } from '../services/product.service';
 import { FormsModule } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-product-list',
   standalone: true,
@@ -19,6 +17,9 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts()
+    this.productService.getProducts().subscribe(products => {
+      this.products = products;
+      console.log(this.products);
+    })
   }
 }
