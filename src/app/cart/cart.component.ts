@@ -38,5 +38,4 @@ export class CartComponent {
     this.total = parseFloat(total.toFixed(2));
     this.cartList.map(product => this.buyEventService.checkCount(product));
   }
-
 }

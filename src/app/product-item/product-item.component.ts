@@ -13,12 +13,13 @@ import { CartService } from '../services/cart.service';
 })
 export class ProductItemComponent {
   @Input() product: Product;
+  @Output() buyProductEvent = new EventEmitter<Product>();
 
-  constructor(private buyEventService: CartService) {
+  constructor() {
     this.product = new Product();
   }
 
-  buyProduct(): void {
-    this.buyEventService.addProduct(this.product);
+  addToCart(): void {
+    this.buyProductEvent.emit(this.product)
   }
 }

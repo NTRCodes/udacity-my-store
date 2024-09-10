@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../models/Product';
 import { ProductItemComponent } from '../product-item/product-item.component';
 import { ProductService } from '../services/product.service';
+import { CartService } from '../services/cart.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,12 +15,16 @@ import { FormsModule } from '@angular/forms';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private buyEventService: CartService) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
       console.log(this.products);
     })
+  }
+
+  addToCart($event: Product) {
+    this.buyEventService.addProduct($event);
   }
 }
