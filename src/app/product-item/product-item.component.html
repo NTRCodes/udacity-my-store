@@ -2,6 +2,6 @@
   <a [routerLink]="['/detail', product.id]"><img class="product-image" [src]="product.url" [alt]="product.description"></a>
   <p>{{ product.name }}</p>
   <p>{{ product.price }}</p>
-  <input class="select-input" type="number" [(ngModel)]="product.count" >
+  <input class="select-input" type="number" min="1" [(ngModel)]="product.count" />
   <button (click)="buyProduct()">Add to cart</button>
 </div>
