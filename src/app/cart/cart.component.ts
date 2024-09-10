@@ -25,7 +25,6 @@ export class CartComponent {
     this.updateTotal()
   }
 
-
   submitForm() {
     this.cartMode = false;
   }

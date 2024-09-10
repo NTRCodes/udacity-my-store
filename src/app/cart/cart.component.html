@@ -9,7 +9,7 @@
             <h3>${{ product.price }}</h3>
             <div>
               <span>Amount: </span>
-              <input type="number" class="number-input" [(ngModel)]="product.count" (change)="updateTotal()">
+              <input type="number" class="number-input" [(ngModel)]="product.count" (ngModelChange)="updateTotal()">
             </div>
           </div>
         </div>
